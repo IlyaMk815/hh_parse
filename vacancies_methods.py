@@ -119,10 +119,10 @@ def vacancies_update():
                     for i in page['items']:
                         if item == i['id']:
                             curr.execute(f'''insert into {bd_conf['table_name']}
-                            (vacancy_id, name, salary, currency, url, employer, experience) values('{i['id']}',
+                            (vacancy_id, name, salary, currency, url, employer, experience, date) values('{i['id']}',
                             '{i['name']}', '{elem_check(i, 'salary', 'from')}','{elem_check(i, 'salary', 'currency')}',
                             '{i['alternate_url']}', '{elem_check(i, 'employer', 'name')}',
-                            '{elem_check(i, 'experience', 'name')}');''')
+                            '{elem_check(i, 'experience', 'name')}', '{i['published_at']}');''')
                             conn.commit()
                             total_count += 1
 
