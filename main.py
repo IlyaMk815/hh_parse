@@ -1,21 +1,38 @@
 import vacancies_methods as vm
 
 
+def wrng_answ():
+    print('Неверная команда')
+
+
 def main():
-    print('Выберите действие: \n1. Создать записи в БД\n2. Обновить записи в БД\n3. Удалить записи БД')
-    action = int(input())
+    print('\nВведите цифру команды: \n1 - Обновить записи в БД\n2 - Удалить записи БД\n3 - Выйти')
 
-    if action == 1:
-        vm.create_vacancies()
-
-    elif action == 2:
-        vm.vacancies_update()
-
-    elif action == 3:
-        vm.clear_database()
-
-    else:
-        print("Неверная команда")
+    try:
+        action = int(input())
+        if action == 1:
+            vm.vacancies_update()
+            main()
+        elif action == 2:
+            print('Вы действительно хотите удалить записи?\nЭто действие сотрёт все записи и очистит индекс! (y/n):')
+            answ = input()
+            if answ in ['y', 'н', 'yes', 'да']:
+                vm.clear_database()
+                main()
+            elif answ in ['n', 'no', 'т', 'нет']:
+                print('Удаление записей отменено.')
+                main()
+            else:
+                wrng_answ()
+                main()
+        elif action == 3:
+            return print('Выполнение завершено')
+        else:
+            wrng_answ()
+            main()
+    except ValueError:
+        wrng_answ()
+        main()
 
 
 if __name__ == '__main__':
