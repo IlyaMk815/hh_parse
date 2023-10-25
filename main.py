@@ -9,7 +9,7 @@ def main():
     print('\nВведите цифру команды: \n1 - Обновить записи в БД\n2 - Удалить записи БД\n3 - Выйти')
 
     try:
-        action = int(input())
+        action: int = int(input())
         if action == 1:
             vm.vacancies_update()
             main()
